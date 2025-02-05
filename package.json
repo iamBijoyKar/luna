@@ -1,0 +1,22 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "build": "nexe --build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "cli-spinners": "^3.2.0",
+    "clipboardy": "^4.0.0",
+    "commander": "^13.1.0",
+    "inquirer": "^12.4.1",
+    "ollama": "^0.5.12",
+    "ora": "^8.2.0"
+  }
+}
