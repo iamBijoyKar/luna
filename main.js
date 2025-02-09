@@ -3,7 +3,7 @@
 import { Command } from "commander";
 import cliSpinners from "cli-spinners";
 import ora from "ora";
-import { chat } from "./ollama.js";
+import { chat, listModels } from "./ollama.js";
 
 const program = new Command();
 
@@ -18,7 +18,20 @@ program
     }).start();
     chat(content, args.error).then((response) => {
       spinner.stop();
-      console.log(" ✅ Added to clipboard!");
+      if (response.status === "success") {
+        console.log("✅ Added to clipboard!");
+      } else {
+        console.error("❌ Failed to chat with model");
+      }
+    });
+  });
+
+program
+  .command("list")
+  .description("list available models")
+  .action(() => {
+    listModels().then((models) => {
+      console.log(models);
     });
   });
 

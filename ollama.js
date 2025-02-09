@@ -1,5 +1,6 @@
 import ollama from "ollama";
 import clipboard from "clipboardy";
+import Table from "cli-table";
 
 export async function chat(message, errorFlag) {
   const model = getModelName();
@@ -43,4 +44,15 @@ export async function chat(message, errorFlag) {
 
 function getModelName() {
   return "tinyllama";
+}
+
+export async function listModels() {
+  const modelList = await ollama.list();
+  const table = new Table({
+    head: ["Name", "Model", "Modified At"],
+  });
+  modelList["models"].forEach((model) => {
+    table.push([model.name, model.model, model.modified_at]);
+  });
+  return table.toString();
 }

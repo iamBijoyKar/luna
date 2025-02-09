@@ -13,6 +13,7 @@
   "type": "module",
   "dependencies": {
     "cli-spinners": "^3.2.0",
+    "cli-table": "^0.3.11",
     "clipboardy": "^4.0.0",
     "commander": "^13.1.0",
     "inquirer": "^12.4.1",
