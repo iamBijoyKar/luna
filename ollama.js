@@ -56,3 +56,13 @@ export async function listModels() {
   });
   return table.toString();
 }
+
+export function changeModel() {
+  //todo: Change the default model implementation
+  return "Model changed";
+}
+
+export async function getModels() {
+  const list = await ollama.list();
+  return list["models"].map((model) => model.model);
+}

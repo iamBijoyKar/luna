@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 
+//* lib imports
 import { Command } from "commander";
 import cliSpinners from "cli-spinners";
 import ora from "ora";
-import { chat, listModels } from "./ollama.js";
+import inquirer from "inquirer";
+
+//* local imports
+import { chat, listModels, getModels } from "./ollama.js";
 
 const program = new Command();
 
@@ -33,6 +37,24 @@ program
     listModels().then((models) => {
       console.log(models);
     });
+  });
+
+program
+  .command("change")
+  .description("change the default model")
+  .action(() => {
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          name: "model",
+          message: "Select a model",
+          choices: getModels(),
+        },
+      ])
+      .then((answers) => {
+        console.log(`Changing the default model to ${answers.model}`);
+      });
   });
 
 program.parse();
