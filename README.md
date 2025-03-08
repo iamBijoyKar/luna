@@ -1,7 +1,7 @@
 <div align="center">
 <h1>Luna</h1>
 <p>
-    Luna is a ollama wrapper with extra features. Written in JavaScript.
+    Luna is an ollama wrapper with extra features. Written in JavaScript.
 </p>
 </div>
 
@@ -13,5 +13,12 @@
 ## Prerequisites 📋
 - Ollama 
 - Node.js
+
+
+## Luna Preview 🎆
+
+https://github.com/user-attachments/assets/f4f53bcf-82d8-454c-830d-8c51f9015d0f
+
+
 
 
