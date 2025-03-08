@@ -1,5 +1,8 @@
 <div align="center">
+
+<img src="https://github.com/user-attachments/assets/c240d23a-6546-4770-8fe6-60395a7360a9" width="200px" alt="Luna logo" />
 <h1>Luna</h1>
+    
 <p>
     Luna is an ollama wrapper with extra features. Written in JavaScript.
 </p>
