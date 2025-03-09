@@ -1,7 +1,7 @@
 {
-  "name": "js",
-  "version": "1.0.0",
-  "description": "",
+  "name": "luna",
+  "version": "0.0.0",
+  "description": "Luna is an ollama wrapper with extra features. Written in JavaScript.",
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "",
   "type": "module",
   "dependencies": {
     "cli-spinners": "^3.2.0",
