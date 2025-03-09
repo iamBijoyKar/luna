@@ -1,9 +1,10 @@
 import ollama from "ollama";
 import clipboard from "clipboardy";
 import Table from "cli-table";
+import { writeFileSync, existsSync, readFileSync } from "fs";
 
 export async function chat(message, errorFlag) {
-  const model = getModelName();
+  const model = await getModelName();
   let response = "";
   try {
     // Chat with the model
@@ -42,8 +43,22 @@ export async function chat(message, errorFlag) {
   };
 }
 
-function getModelName() {
-  return "tinyllama";
+export async function getModelName() {
+  const lunaLocalFile = "luna.local.json";
+  if (!existsSync(lunaLocalFile)) {
+    const modelList = await ollama.list();
+    if (modelList.models.length === 0) {
+      writeFileSync(lunaLocalFile, JSON.stringify({ defaultModel: "" }));
+      throw new Error("No models found");
+    }
+    writeFileSync(
+      lunaLocalFile,
+      JSON.stringify({ defaultModel: modelList.models[0].model })
+    );
+    return modelList.models[0].model;
+  }
+  const lunaLocal = JSON.parse(readFileSync(lunaLocalFile));
+  return lunaLocal.defaultModel;
 }
 
 export async function listModels() {
