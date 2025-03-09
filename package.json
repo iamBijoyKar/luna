@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "build": "nexe --build"
+    "build": "nexe --build",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +20,8 @@
     "inquirer": "^12.4.1",
     "ollama": "^0.5.12",
     "ora": "^8.2.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
