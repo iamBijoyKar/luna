@@ -72,9 +72,16 @@ export async function listModels() {
   return table.toString();
 }
 
-export function changeModel() {
-  //todo: Change the default model implementation
-  return "Model changed";
+export function changeModel(model) {
+  const lunaLocalFile = "luna.local.json";
+  if (!existsSync(lunaLocalFile)) {
+    writeFileSync(lunaLocalFile, JSON.stringify({ defaultModel: model }));
+  } else {
+    const lunaLocal = JSON.parse(readFileSync(lunaLocalFile));
+    lunaLocal.defaultModel = model;
+    writeFileSync(lunaLocalFile, JSON.stringify(lunaLocal));
+  }
+  return model;
 }
 
 export async function getModels() {

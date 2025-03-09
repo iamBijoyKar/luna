@@ -7,7 +7,7 @@ import ora from "ora";
 import inquirer from "inquirer";
 
 //* local imports
-import { chat, listModels, getModels } from "./ollama.js";
+import { chat, listModels, getModels, changeModel } from "./ollama.js";
 
 const program = new Command();
 
@@ -54,6 +54,7 @@ program
       ])
       .then((answers) => {
         console.log(`Changing the default model to ${answers.model}`);
+        changeModel(answers.model);
       });
   });
 
