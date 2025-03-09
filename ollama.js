@@ -64,10 +64,20 @@ export async function getModelName() {
 export async function listModels() {
   const modelList = await ollama.list();
   const table = new Table({
-    head: ["Name", "Model", "Modified At"],
+    head: ["Model", "Size", "Parameters", "Architecture", "Modified At"],
   });
   modelList["models"].forEach((model) => {
-    table.push([model.name, model.model, model.modified_at]);
+    const families = model.details.families.join(", ");
+    const modifiedAt = new Date(model.modified_at).toLocaleString();
+    const size = model.size / 1000000000;
+    const sizeStr = size.toFixed(2) + " GB";
+    table.push([
+      model.model,
+      sizeStr,
+      model.details.parameter_size,
+      families,
+      modifiedAt,
+    ]);
   });
   return table.toString();
 }
