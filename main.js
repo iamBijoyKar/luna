@@ -7,7 +7,13 @@ import ora from "ora";
 import inquirer from "inquirer";
 
 //* local imports
-import { chat, listModels, getModels, changeModel } from "./ollama.js";
+import {
+  chat,
+  listModels,
+  getModels,
+  changeModel,
+  pullModel,
+} from "./ollama.js";
 
 const program = new Command();
 
@@ -56,6 +62,24 @@ program
         console.log(`Changing the default model to ${answers.model}`);
         changeModel(answers.model);
       });
+  });
+
+program
+  .command("pull")
+  .description("pull the latest models")
+  .action(() => {
+    const spinner = ora({
+      text: "Pulling the latest models...",
+      spinner: cliSpinners.dots,
+    }).start();
+    pullModel().then((res) => {
+      spinner.stop();
+      if (res.status === "error") {
+        console.error("❌ Failed to pull the latest models");
+        return;
+      }
+      console.log("✅ Pulled the latest models!");
+    });
   });
 
 program.parse();

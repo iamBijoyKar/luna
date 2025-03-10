@@ -98,3 +98,20 @@ export async function getModels() {
   const list = await ollama.list();
   return list["models"].map((model) => model.model);
 }
+
+export async function pullModel(model) {
+  try {
+    await ollama.pull(model);
+    return {
+      status: "success",
+      message: "Model pulled successfully",
+      model: model,
+    };
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+      model: model,
+    };
+  }
+}
